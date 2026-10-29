@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>pantalla_login</class>
+ <widget class="QWidget" name="pantalla_login">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>380</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>600</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Fondo general de la ventana */
+QWidget#pantalla_login {
+    background-color: #121824;
+}
+
+/* Tarjeta central flotante */
+QFrame#frame_tarjeta {
+    background-color: #1c2434;
+    border: 1px solid #2c384c;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+/* Título principal */
+QLabel#label_titulo {
+    color: #38bdf8;
+    font-family: &quot;Segoe UI&quot;, &quot;Constantia&quot;, sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    margin-bottom: 2px;
+}
+
+/* Subtítulo de bienvenida */
+QLabel#label_5 {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 0px;
+}
+
+/* Etiquetas de campo (Usuario, Contraseña) */
+QLabel#texto_usuario, QLabel#texro_contrasea {
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+/* Cuadros de texto para ingresar datos */
+QLineEdit#input_usuario, QLineEdit#input_password {
+    background-color: #0f172a;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+/* Efecto cuando el usuario hace clic para escribir en el cuadro de texto */
+QLineEdit#input_usuario:focus, QLineEdit#input_password:focus {
+    border: 1px solid #38bdf8;
+}
+
+/* Checkbox de mostrar contraseña */
+QCheckBox#chk_mostrar_password {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+QCheckBox#chk_mostrar_password::indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid #475569;
+    background-color: #0f172a;
+}
+
+QCheckBox#chk_mostrar_password::indicator:checked {
+    background-color: #38bdf8;
+    border: 1px solid #38bdf8;
+}
+
+/* Botón principal de Iniciar Sesión */
+QPushButton#btn_login {
+    background-color: #0284c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+QPushButton#btn_login:hover {
+    background-color: #0369a1;
+}
+
+QPushButton#btn_login:pressed {
+    background-color: #075985;
+}
+
+/* Botón plano para ir a Registro */
+QPushButton#btn_ir_registro {
+    color: #38bdf8;
+    font-size: 13px;
+    font-weight: 500;
+    background: none;
+    border: none;
+    margin-top: 5px;
+}
+
+QPushButton#btn_ir_registro:hover {
+    color: #7dd3fc;
+    text-decoration: underline;
+}
+
+/* Fondo general de la ventana de registro */
+QWidget#Form {
+    background-color: #121824;
+}
+
+/* Tarjeta central flotante */
+QFrame#frame_pantalla {
+    background-color: #1c2434;
+    border: 1px solid #2c384c;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+/* Ocultar bordes de los sub-marcos internos de Nombre y Apellido */
+QFrame#frame_edicion, QFrame#frame_edicion2 {
+    border: none;
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Título principal (Crear Cuenta) */
+QLabel#label_titulo {
+    color: #38bdf8;
+    font-family: &quot;Segoe UI&quot;, &quot;Mongolian Baiti&quot;, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+/* Etiquetas de los campos (Nombre, Apellido, Usuario, etc.) */
+QLabel#label_nombre, QLabel#label_apellido, QLabel#label_usuario, 
+QLabel#label_correo, QLabel#label_contrasena, QLabel#label_repetir_contrasena {
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+/* Todos los cuadros de texto */
+QLineEdit#Campo_nombre, QLineEdit#Campo_apellido, QLineEdit#campo_usuario, 
+QLineEdit#campo_correo, QLineEdit#campo_contrasena, QLineEdit#campo_repetir_contrasena {
+    background-color: #0f172a;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 6px 12px; 
+    min-height: 20px;   
+    font-size: 14px;
+}
+
+/* Efecto focus al escribir en cualquier cuadro de texto */
+QLineEdit#Campo_nombre:focus, QLineEdit#Campo_apellido:focus, QLineEdit#campo_usuario:focus, 
+QLineEdit#campo_correo:focus, QLineEdit#campo_contrasena:focus, QLineEdit#campo_repetir_contrasena:focus {
+    border: 1px solid #38bdf8;
+}
+
+/* Checkbox de mostrar contraseña */
+QCheckBox#ckb_mostrar_contrasea {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+QCheckBox#ckb_mostrar_contrasea::indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid #475569;
+    background-color: #0f172a;
+}
+
+QCheckBox#ckb_mostrar_contrasea::indicator:checked {
+    background-color: #38bdf8;
+    border: 1px solid #38bdf8;
+}
+
+/* Botón principal Crear Cuenta */
+QPushButton#pb_crear {
+    background-color: #0284c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+QPushButton#pb_crear:hover {
+    background-color: #0369a1;
+}
+
+QPushButton#pb_crear:pressed {
+    background-color: #075985;
+}
+
+/* Botón plano para volver al login */
+QPushButton#pb_volver_a_login {
+    color: #38bdf8;
+    font-size: 13px;
+    font-weight: 500;
+    background: none;
+    border: none;
+    margin-top: 5px;
+}
+
+QPushButton#pb_volver_a_login:hover {
+    color: #7dd3fc;
+    text-decoration: underline;
+}
+
+/* Etiqueta para mensajes de error o éxito */
+QLabel#label_mensaje {
+    color: #f87171;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+/* Estado por defecto o informativo (Gris claro) */
+QLabel#label_mensaje {
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+/* Estado de Error (Rojo suave/Alerta) */
+QLabel#label_mensaje[tipo=&quot;error&quot;] {
+    color: #ef4444; /* Un rojo moderno que contrasta mejor con el fondo oscuro */
+    font-weight: 600;
+}
+
+/* Estado de Éxito (Verde esmeralda) */
+QLabel#label_mensaje[tipo=&quot;exito&quot;] {
+    color: #10b981; /* Un verde vivo ideal para el modo oscuro */
+    font-weight: 600;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QFrame" name="frame_tarjeta">
+     <property name="minimumSize">
+      <size>
+       <width>360</width>
+       <height>300</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>800</width>
+       <height>16777215</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item alignment="Qt::AlignmentFlag::AlignHCenter">
+       <widget class="QLabel" name="label_titulo">
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Light">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Light">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Light">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>255</red>
+              <green>255</green>
+              <blue>255</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>LOGIN</string>
+        </property>
+        <property name="margin">
+         <number>-2</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_5">
+        <property name="lineWidth">
+         <number>1</number>
+        </property>
+        <property name="text">
+         <string>Ingresá con tu cuenta para continuar.</string>
+        </property>
+        <property name="margin">
+         <number>3</number>
+        </property>
+        <property name="indent">
+         <number>-1</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="texto_usuario">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>532</width>
+          <height>20</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>41</height>
+         </size>
+        </property>
+        <property name="toolTip">
+         <string/>
+        </property>
+        <property name="text">
+         <string>&amp;Usuario o Correo electrónico *</string>
+        </property>
+        <property name="margin">
+         <number>0</number>
+        </property>
+        <property name="buddy">
+         <cstring>input_usuario</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="input_usuario">
+        <property name="accessibleDescription">
+         <string>Cassandro@gmail.com</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>Cassandra@gmail.com</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="texro_contrasea">
+        <property name="text">
+         <string>&amp;Contraseña *</string>
+        </property>
+        <property name="buddy">
+         <cstring>input_password</cstring>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="input_password">
+        <property name="accessibleDescription">
+         <string>Tu contraseña</string>
+        </property>
+        <property name="echoMode">
+         <enum>QLineEdit::EchoMode::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Tu contraseña</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="chk_mostrar_password">
+        <property name="text">
+         <string>Mostrar contraseña</string>
+        </property>
+        <property name="tristate">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_login">
+        <property name="text">
+         <string>Iniciar sesión</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_mensaje">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btn_ir_registro">
+        <property name="text">
+         <string>¿No tenés cuenta? Registrate</string>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>input_usuario</tabstop>
+  <tabstop>input_password</tabstop>
+  <tabstop>btn_login</tabstop>
+  <tabstop>chk_mostrar_password</tabstop>
+  <tabstop>btn_ir_registro</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,0 +1,839 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Form</class>
+ <widget class="QWidget" name="Form">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>648</width>
+    <height>587</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">/* Fondo general de la ventana de registro */
+QWidget#Form {
+    background-color: #121824;
+}
+
+/* Tarjeta central flotante */
+QFrame#frame_pantalla {
+    background-color: #1c2434;
+    border: 1px solid #2c384c;
+    border-radius: 12px;
+    padding: 15px;
+}
+
+/* Ocultar bordes de los sub-marcos internos de Nombre y Apellido */
+QFrame#frame_edicion, QFrame#frame_edicion2 {
+    border: none;
+    background: transparent;
+    padding: 0px;
+    margin: 0px;
+}
+
+/* Título principal (Crear Cuenta) */
+QLabel#label_titulo {
+    color: #38bdf8;
+    font-family: &quot;Segoe UI&quot;, &quot;Mongolian Baiti&quot;, sans-serif;
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+/* Etiquetas de los campos (Nombre, Apellido, Usuario, etc.) */
+QLabel#label_nombre, QLabel#label_apellido, QLabel#label_usuario, 
+QLabel#label_correo, QLabel#label_contrasena, QLabel#label_repetir_contrasena {
+    color: #e2e8f0;
+    font-size: 13px;
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+/* Todos los cuadros de texto */
+QLineEdit#Campo_nombre, QLineEdit#Campo_apellido, QLineEdit#campo_usuario, 
+QLineEdit#campo_correo, QLineEdit#campo_contrasena, QLineEdit#campo_repetir_contrasena {
+    background-color: #0f172a;
+    color: #f8fafc;
+    border: 1px solid #334155;
+    border-radius: 6px;
+    padding: 6px 12px; 
+    min-height: 18px;   
+    font-size: 14px;
+}
+
+/* Efecto focus al escribir en cualquier cuadro de texto */
+QLineEdit#Campo_nombre:focus, QLineEdit#Campo_apellido:focus, QLineEdit#campo_usuario:focus, 
+QLineEdit#campo_correo:focus, QLineEdit#campo_contrasena:focus, QLineEdit#campo_repetir_contrasena:focus {
+    border: 1px solid #38bdf8;
+}
+
+/* Contenedor base de la barra (igual para todos los estados) */
+QProgressBar#progressBar {
+    border: 1px solid #334155;
+    border-radius: 4px;
+    background-color: #0f172a;
+    text-align: center;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    height: 16px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+/* Relleno por defecto o si está vacía */
+QProgressBar#progressBar::chunk {
+    background-color: #475569;
+    border-radius: 3px;
+    margin: 1px;
+}
+
+/* --- ESTADOS DINÁMICOS DE LA BARRA --- */
+
+/* Estado Débil - Rojo */
+QProgressBar#progressBar[fuerza=&quot;debil&quot;]::chunk {
+    background-color: #ef4444;
+}
+
+/* Estado Media - Amarillo */
+QProgressBar#progressBar[fuerza=&quot;media&quot;]::chunk {
+    background-color: #f59e0b;
+}
+
+/* Estado Fuerte - Tu azul brillante/Celeste */
+QProgressBar#progressBar[fuerza=&quot;fuerte&quot;]::chunk {
+    background-color: #38bdf8;
+}
+
+
+/* Checkbox de mostrar contraseña */
+QCheckBox#ckb_mostrar_contrasea {
+    color: #94a3b8;
+    font-size: 12px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+QCheckBox#ckb_mostrar_contrasea::indicator {
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    border: 1px solid #475569;
+    background-color: #0f172a;
+}
+
+QCheckBox#ckb_mostrar_contrasea::indicator:checked {
+    background-color: #38bdf8;
+    border: 1px solid #38bdf8;
+}
+
+/* Botón principal Crear Cuenta */
+QPushButton#pb_crear {
+    background-color: #0284c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+QPushButton#pb_crear:hover {
+    background-color: #0369a1;
+}
+
+QPushButton#pb_crear:pressed {
+    background-color: #075985;
+}
+
+/* Botón plano para volver al login */
+QPushButton#pb_volver_a_login {
+    color: #38bdf8;
+    font-size: 13px;
+    font-weight: 500;
+    background: none;
+    border: none;
+    margin-top: 5px;
+}
+
+QPushButton#pb_volver_a_login:hover {
+    color: #7dd3fc;
+    text-decoration: underline;
+}
+
+/* Etiqueta para mensajes de error o éxito */
+QLabel#label_mensaje {
+    color: #f87171;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+/* Estado por defecto o informativo (Gris claro) */
+QLabel#label_mensaje {
+    color: #94a3b8;
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+
+/* Estado de Error (Rojo suave/Alerta) */
+QLabel#label_mensaje[tipo=&quot;error&quot;] {
+    color: #ef4444; /* Un rojo moderno que contrasta mejor con el fondo oscuro */
+    font-weight: 600;
+}
+
+/* Estado de Éxito (Verde esmeralda) */
+QLabel#label_mensaje[tipo=&quot;exito&quot;] {
+    color: #10b981; /* Un verde vivo ideal para el modo oscuro */
+    font-weight: 600;
+}</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QFrame" name="frame_pantalla">
+     <property name="minimumSize">
+      <size>
+       <width>360</width>
+       <height>500</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>500</width>
+       <height>500</height>
+      </size>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Shape::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Shadow::Raised</enum>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label_titulo">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>60</height>
+         </size>
+        </property>
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>-1</pointsize>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Crear Cuenta
+</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignmentFlag::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame_edicion">
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Raised</enum>
+        </property>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="label_apellido">
+           <property name="text">
+            <string>Apellido *</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_nombre">
+           <property name="text">
+            <string>Nombre *</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QFrame" name="frame_edicion2">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Shape::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Shadow::Raised</enum>
+        </property>
+        <widget class="QLineEdit" name="Campo_apellido">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>216</width>
+           <height>34</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Jose</string>
+         </property>
+        </widget>
+        <widget class="QLineEdit" name="Campo_nombre">
+         <property name="geometry">
+          <rect>
+           <x>225</x>
+           <y>0</y>
+           <width>216</width>
+           <height>34</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string/>
+         </property>
+         <property name="placeholderText">
+          <string>Maria</string>
+         </property>
+         <property name="cursorMoveStyle">
+          <enum>Qt::CursorMoveStyle::LogicalMoveStyle</enum>
+         </property>
+        </widget>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_8">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Policy::Expanding</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_usuario">
+        <property name="text">
+         <string>Usuario *</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="campo_usuario">
+        <property name="placeholderText">
+         <string>Cassandra23</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_6">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_correo">
+        <property name="text">
+         <string>Correo electrónico *</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="campo_correo">
+        <property name="placeholderText">
+         <string>Cassandra@gmail.com</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_5">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_contrasena">
+        <property name="text">
+         <string>Contraseña * (minimo 8 caracteres)</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="campo_contrasena">
+        <property name="echoMode">
+         <enum>QLineEdit::EchoMode::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Ejemplo1</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_repetir_contrasena">
+        <property name="text">
+         <string>Repetí la contraseña *</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="campo_repetir_contrasena">
+        <property name="echoMode">
+         <enum>QLineEdit::EchoMode::Password</enum>
+        </property>
+        <property name="placeholderText">
+         <string>Ejemplo1</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Policy::Ignored</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <spacer name="verticalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item alignment="Qt::AlignmentFlag::AlignLeft">
+       <widget class="QProgressBar" name="progressBar">
+        <property name="minimumSize">
+         <size>
+          <width>170</width>
+          <height>28</height>
+         </size>
+        </property>
+        <property name="maximum">
+         <number>100</number>
+        </property>
+        <property name="value">
+         <number>33</number>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="ckb_mostrar_contrasea">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>25</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Mostrar contraseña</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_crear">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>45</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Crear cuenta</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="verticalSpacer">
+        <property name="orientation">
+         <enum>Qt::Orientation::Vertical</enum>
+        </property>
+        <property name="sizeType">
+         <enum>QSizePolicy::Policy::Fixed</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_mensaje">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="pb_volver_a_login">
+        <property name="palette">
+         <palette>
+          <active>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </active>
+          <inactive>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </inactive>
+          <disabled>
+           <colorrole role="WindowText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="Text">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="ButtonText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="255">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+           <colorrole role="PlaceholderText">
+            <brush brushstyle="SolidPattern">
+             <color alpha="128">
+              <red>56</red>
+              <green>189</green>
+              <blue>248</blue>
+             </color>
+            </brush>
+           </colorrole>
+          </disabled>
+         </palette>
+        </property>
+        <property name="text">
+         <string>← Ya tengo cuenta: volver al login</string>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+     </layout>
+     <zorder>pb_crear</zorder>
+     <zorder>frame_edicion</zorder>
+     <zorder>frame_edicion2</zorder>
+     <zorder>label_usuario</zorder>
+     <zorder>campo_usuario</zorder>
+     <zorder>label_correo</zorder>
+     <zorder>campo_correo</zorder>
+     <zorder>label_contrasena</zorder>
+     <zorder>campo_contrasena</zorder>
+     <zorder>label_repetir_contrasena</zorder>
+     <zorder>campo_repetir_contrasena</zorder>
+     <zorder>ckb_mostrar_contrasea</zorder>
+     <zorder>label_mensaje</zorder>
+     <zorder>pb_volver_a_login</zorder>
+     <zorder>verticalSpacer</zorder>
+     <zorder>verticalSpacer_2</zorder>
+     <zorder>verticalSpacer_3</zorder>
+     <zorder>verticalSpacer_4</zorder>
+     <zorder>verticalSpacer_5</zorder>
+     <zorder>verticalSpacer_6</zorder>
+     <zorder>label_titulo</zorder>
+     <zorder>verticalSpacer_8</zorder>
+     <zorder>progressBar</zorder>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>Campo_apellido</tabstop>
+  <tabstop>Campo_nombre</tabstop>
+  <tabstop>campo_usuario</tabstop>
+  <tabstop>campo_correo</tabstop>
+  <tabstop>campo_contrasena</tabstop>
+  <tabstop>campo_repetir_contrasena</tabstop>
+  <tabstop>ckb_mostrar_contrasea</tabstop>
+  <tabstop>pb_crear</tabstop>
+  <tabstop>pb_volver_a_login</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
